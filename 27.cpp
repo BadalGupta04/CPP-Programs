@@ -1,0 +1,63 @@
+// Aim: Create class Time that has three data members hour, minute and second and two constructors, default constructor and parameterized constructor to initialize data member. Write a program to add two times by overloading operator +
+
+// T1 : 5hr 35min 50 sec
+// T2 : 6h 45 mns 30 sec
+// T3: 12 hrs 21min  20sec
+ 
+
+
+
+
+#include <iostream>
+using namespace std;
+ 
+class Time
+{
+private:
+    int hours;
+    int minutes;
+    int seconds;
+ 
+public:
+    void getTime(void);
+    void putTime(void);
+    void addTime(Time T1,Time T2);
+};
+ 
+void Time::getTime(void)
+{
+    cout << "Enter time:" << endl;
+    cout << "Hours? ";    cin>>hours;
+    cout << "Minutes? ";  cin>>minutes;
+    cout << "Seconds? ";  cin>>seconds;
+}
+ 
+void Time::putTime(void)
+{
+    cout << endl;
+    cout << "Time after add: ";
+    cout << hours << ":" << minutes << ":" << seconds << endl;
+}
+ 
+void Time::addTime(Time T1,Time T2)
+{
+
+    this->seconds=T1.seconds+T2.seconds;
+    this->minutes=T1.minutes+T2.minutes + this->seconds/60;;
+    this->hours= T1.hours+T2.hours + (this->minutes/60);
+    this->minutes %=60;
+    this->seconds %=60;
+}
+ 
+ 
+int main()
+{
+    Time T1,T2,T3;
+    T1.getTime();
+    T2.getTime();
+    //add two times
+    T3.addTime(T1,T2);
+    T3.putTime();
+
+    return 0;
+}
